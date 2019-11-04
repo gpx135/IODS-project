@@ -1,4 +1,10 @@
 
-# About the project
+# My thoughts about the project
 
-*Write a short description about the course and add a link to your GitHub repository here. This is an R Markdown (.Rmd) file so you can use R Markdown syntax.*
+
+
+After learning online course from the Data Camp, I think all the programming languages are essentially the same. R is very similar to Python, and some functions are just like one the the Python library (Pandas), since they all use Dataframe object to store information, so I find it very easy to understand, and I think R is focused on the data processing where as Python is more of general purpose type of language.
+
+My github repository is [here](https://github.com/gpx135/IODS-project).
+
+My course diary web page is [here](https://gpx135.github.io/IODS-project/).
