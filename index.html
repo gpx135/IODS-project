@@ -387,17 +387,130 @@ summary {
 
 <div id="TOC">
 <ul>
-<li><a href="#my-thoughts-about-the-project">My thoughts about the project</a></li>
-<li><a href="#chapter-2">Chapter 2</a></li>
+<li><a href="#about-the-project">About the project</a></li>
+<li><a href="#chapter-2">Chapter 2</a><ul>
+<li><a href="#regression-and-model-validation">Regression and model validation</a></li>
+</ul></li>
 </ul>
 </div>
 
 <hr />
-<div id="my-thoughts-about-the-project" class="section level1">
-<h1>My thoughts about the project</h1>
+<div id="about-the-project" class="section level1">
+<h1>About the project</h1>
 <p>After learning online course from the Data Camp, I think all the programming languages are essentially the same. R is very similar to Python, and some functions are just like one the the Python library (Pandas), since they all use Dataframe object to store information, so I find it very easy to understand, and I think R is focused on the data processing where as Python is more of general purpose type of language.</p>
 <p>My github repository is <a href="https://github.com/gpx135/IODS-project">here</a>.</p>
 <p>My course diary web page is <a href="https://gpx135.github.io/IODS-project/">here</a>.</p>
+<p>Some notes about the R language: - R is an open source language which mean free of charge and everyone can use it. In the field of statistical analysis, it is very convienient to manipulate the data. R’s basic data types are character, numeric, integer, complex, and logical. R’s basic data structures include the vector, list, matrix, data frame, and factors.</p>
+<ul>
+<li>assign a value:</li>
+</ul>
+<pre class="r"><code>something &lt;- value</code></pre>
+<ul>
+<li>add comment</li>
+</ul>
+<pre class="r"><code># some_comment (just like python)</code></pre>
+<ul>
+<li>execute a line of code (just like debug mode but not entirely the same)</li>
+</ul>
+<pre class="r"><code>Cmd/ctrl + Enter</code></pre>
+<ul>
+<li>basic arithmetics</li>
+</ul>
+<pre class="r"><code>+ # Addition
+- # Subtraction
+* # Multiplication
+/ # Division
+^ (or **) # Exponentiation</code></pre>
+<ul>
+<li>excecute a function</li>
+</ul>
+<pre class="r"><code>some_function(object)</code></pre>
+<ul>
+<li>take mean value</li>
+</ul>
+<pre class="r"><code>mean(data_source)</code></pre>
+<ul>
+<li>access first a lines of dataframe</li>
+</ul>
+<pre class="r"><code>head(students2014, n = a)
+# its a good practice to add the argument name to avoid confusion</code></pre>
+<ul>
+<li>structure of data</li>
+</ul>
+<pre class="r"><code>str(data_source)
+# but in python it prints out string of an object</code></pre>
+<ul>
+<li>data types: numeric, characters, logical, factor(new concept conpared to python)</li>
+</ul>
+<pre class="r"><code>&quot;Strongly disagree&quot; = 1
+&quot;Strongly agree&quot; = 5</code></pre>
+<pre class="r"><code># Boolean values: TRUE or FALSE 
+# all upper case</code></pre>
+<ul>
+<li>create a vactor</li>
+</ul>
+<pre class="r"><code>c(2, 3, 4.1, 5) # has to be same data type
+</code></pre>
+<ul>
+<li>summary of the data</li>
+</ul>
+<pre class="r"><code>summary(data source)
+# it will return some important statistical value of the selected data</code></pre>
+<ul>
+<li>plot a scatter figure</li>
+</ul>
+<pre class="r"><code>plot(x, y, &quot;p&quot;, main = &quot;some title&quot;)</code></pre>
+<ul>
+<li>manupulate a value of a vector</li>
+</ul>
+<pre class="r"><code>names[1]
+# start at 1 not 0
+names[1] &lt;- &quot;new_value&quot;
+names[c(1, 3)] # select value from these positions, order matters</code></pre>
+<ul>
+<li>create a integer vector</li>
+</ul>
+<pre class="r"><code>c[1, 2, 3, 4, 5]
+1:5
+
+# manupulate the vector
+(1:5)*2
+
+# length of the data
+length(data)
+
+slicing
+data[begin:end]
+# possible to modify the vector when slicing a dataframe</code></pre>
+<ul>
+<li>logical comparison</li>
+</ul>
+<pre class="r"><code>==  # exactly equal to
+!=  # not equal to
+&lt;   # less than
+&gt;   # greater than
+&lt;=  # less or equal to
+&gt;=  # greater or equal to
+!a  # NOT a
+a &amp; b   # a AND b
+a | b   # a OR b</code></pre>
+<ul>
+<li>take sebset of the dataframe</li>
+</ul>
+<pre class="r"><code>subset(data_source, conditions...)
+</code></pre>
+<ul>
+<li>looping</li>
+</ul>
+<pre class="r"><code>for (counter in vector) {
+  commands
+  more commands
+}</code></pre>
+<ul>
+<li><p>access a library ```R</p></li>
+<li>create functions</li>
+</ul>
+<pre class="r"><code>function_name &lt;- function(arg1, arg2 = 5) return(return_value) # arg = default value</code></pre>
 <hr />
 </div>
 <div id="chapter-2" class="section level1">
@@ -408,7 +521,10 @@ summary {
 <li>Assume the reader has an introductory course level understanding of writing and reading R code as well as statistical methods.</li>
 <li>Assume the reader has no previous knowledge of your data or the more advanced methods you are using.</li>
 </ul>
+<div id="regression-and-model-validation" class="section level2">
+<h2>Regression and model validation</h2>
 <hr />
+</div>
 </div>
 
 
