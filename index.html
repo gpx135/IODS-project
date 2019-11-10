@@ -523,7 +523,22 @@ a | b   # a OR b</code></pre>
 </ul>
 <div id="regression-and-model-validation" class="section level2">
 <h2>Regression and model validation</h2>
+<div id="r" class="section level4">
+<h4>R</h4>
+<pre class="r"><code>varible &lt;- read.table(&quot;source_of data&quot;, sep=&quot;\t&quot;, header=TRUE) # read data
+dim(data) # check dimension
+str(data) # check structure
+colSums(df) # returns a sum of each column in df
+rowSums(df) # returns a sum of each row in df
+colMeans(df)    # returns the mean of each column in df
+rowMeans(df) # return the mean of each row in df
+select(dataframe, one_of(columes)) # select columns to create new datafram
+colnames(data)[columm_index] &lt;- &quot;new_name&quot; # modify column names
+filtered_data &lt;- filter(original_data, conditions) # filter the data with conditions
+
+</code></pre>
 <hr />
+</div>
 </div>
 </div>
 

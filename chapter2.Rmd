@@ -1,11 +1,82 @@
-# Chapter 2
+# R basics
+```R
+varible <- read.table("source_of data", sep="\t", header=TRUE) # read data
+dim(data) # check dimension
+str(data) # check structure
+colSums(df)	# returns a sum of each column in df
+rowSums(df)	# returns a sum of each row in df
+colMeans(df)	# returns the mean of each column in df
+rowMeans(df) # return the mean of each row in df
+select(dataframe, one_of(columes)) # select columns to create new datafram
+colnames(data)[columm_index] <- "new_name" # modify column names
+filtered_data <- filter(original_data, conditions) # filter the data with conditions
 
-*Describe the work you have done this week and summarize your learning.*
+# If-else statement
+if(condition) {
+   do something
+} else {
+   do something else
+}
 
-- Describe your work and results clearly. 
-- Assume the reader has an introductory course level understanding of writing and reading R code as well as statistical methods.
-- Assume the reader has no previous knowledge of your data or the more advanced methods you are using.
+c(1,2,3,4,5) / 2 # scaling vectors
 
-## Regression and model validation
+%>% # pipe operator
 
-123
+
+select(data_source, one_of(vector_of_columns)) # select few columns as new one
+
+colnames(data) # print colunm names
+
+data_frame <- as.data.frame(scaled) # change data to data frame
+
+sample() # choose ramdom data
+
+mutate() # adding new variables as mutations of the existing ones
+
+jointed_data <- inner_join(first_data, second_data, by = common_columns, suffix = c(".first", ".second"))
+
+```
+
+# Regression and model validation
+## Linear regression
+```R
+library(ggplot2)
+
+qplot(target_variable, explanatory_variable, data = data_source) + geom_smooth(method = "lm") # print out linear fit line
+lm(target_variable ~ explanatory_variable + another_one, data = data_source)
+predict(m, newdata = new_data) # makeing presidction with new_data
+```
+![](/img/1.png)
+
+# Logistic regression
+
+# Clustering and classification
+
+Classification:
+
+- Known data
+- Traind based on data
+- Classify new observations
+
+Clustering:
+
+- Unknown data
+- Find groups with data based on similarity
+
+Methods
+
+- Linear descriminant analysis
+- Distance measures
+- K-means
+
+# Dimensionality reduction techniques
+
+# Analysis of longitudinal data
+
+
+
+
+
+
+
+

@@ -365,17 +365,83 @@ summary {
 </div>
 
 
-<div id="chapter-2" class="section level1">
-<h1>Chapter 2</h1>
-<p><em>Describe the work you have done this week and summarize your learning.</em></p>
-<ul>
-<li>Describe your work and results clearly.</li>
-<li>Assume the reader has an introductory course level understanding of writing and reading R code as well as statistical methods.</li>
-<li>Assume the reader has no previous knowledge of your data or the more advanced methods you are using.</li>
-</ul>
-<div id="regression-and-model-validation" class="section level2">
-<h2>Regression and model validation</h2>
+<div id="r-basics" class="section level1">
+<h1>R basics</h1>
+<pre class="r"><code>varible &lt;- read.table(&quot;source_of data&quot;, sep=&quot;\t&quot;, header=TRUE) # read data
+dim(data) # check dimension
+str(data) # check structure
+colSums(df) # returns a sum of each column in df
+rowSums(df) # returns a sum of each row in df
+colMeans(df)    # returns the mean of each column in df
+rowMeans(df) # return the mean of each row in df
+select(dataframe, one_of(columes)) # select columns to create new datafram
+colnames(data)[columm_index] &lt;- &quot;new_name&quot; # modify column names
+filtered_data &lt;- filter(original_data, conditions) # filter the data with conditions
+
+# If-else statement
+if(condition) {
+   do something
+} else {
+   do something else
+}
+
+c(1,2,3,4,5) / 2 # scaling vectors
+
+%&gt;% # pipe operator
+
+
+select(data_source, one_of(vector_of_columns)) # select few columns as new one
+
+colnames(data) # print colunm names
+
+data_frame &lt;- as.data.frame(scaled) # change data to data frame
+
+sample() # choose ramdom data
+
+mutate() # adding new variables as mutations of the existing ones
+
+jointed_data &lt;- inner_join(first_data, second_data, by = common_columns, suffix = c(&quot;.first&quot;, &quot;.second&quot;))
+</code></pre>
 </div>
+<div id="regression-and-model-validation" class="section level1">
+<h1>Regression and model validation</h1>
+<div id="linear-regression" class="section level2">
+<h2>Linear regression</h2>
+<pre class="r"><code>library(ggplot2)
+
+qplot(target_variable, explanatory_variable, data = data_source) + geom_smooth(method = &quot;lm&quot;) # print out linear fit line
+lm(target_variable ~ explanatory_variable + another_one, data = data_source)
+predict(m, newdata = new_data) # makeing presidction with new_data</code></pre>
+</div>
+</div>
+<div id="logistic-regression" class="section level1">
+<h1>Logistic regression</h1>
+</div>
+<div id="clustering-and-classification" class="section level1">
+<h1>Clustering and classification</h1>
+<p>Classification:</p>
+<ul>
+<li>Known data</li>
+<li>Traind based on data</li>
+<li>Classify new observations</li>
+</ul>
+<p>Clustering:</p>
+<ul>
+<li>Unknown data</li>
+<li>Find groups with data based on similarity</li>
+</ul>
+<p>Methods</p>
+<ul>
+<li>Linear descriminant analysis</li>
+<li>Distance measures</li>
+<li>K-means</li>
+</ul>
+</div>
+<div id="dimensionality-reduction-techniques" class="section level1">
+<h1>Dimensionality reduction techniques</h1>
+</div>
+<div id="analysis-of-longitudinal-data" class="section level1">
+<h1>Analysis of longitudinal data</h1>
 </div>
 
 
