@@ -1,2 +1,2 @@
 # IODS-project
-Template for the IODS course
+My course diary page is [here](https://gpx135.github.io/IODS-project/).
