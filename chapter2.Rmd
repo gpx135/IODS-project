@@ -129,7 +129,7 @@ for (counter in vector) {
 }
 ```
 - access a library
-```R
+
 
 
 - create functions
@@ -176,83 +176,126 @@ mutate() # adding new variables as mutations of the existing ones
 jointed_data <- inner_join(first_data, second_data, by = common_columns, suffix = c(".first", ".second"))
 
 ```
+# Learning Questionnaire Analysis
+## Introduction
+The original data has 60 variables and 183 observations; most of the questions were given on Likert scale, from 1 to 5, except for the few background related variables (age, attitude, points). For the analysis part, the variables related to deep learning, surface learning, and strategic learning have been scaled using [R script]().
 
-# Regression and model validation
-## Linear regression
+## Data overview
 ```R
-library(ggplot2)
-
-qplot(target_variable, explanatory_variable, data = data_source) + geom_smooth(method = "lm") # print out linear fit line
-lm(target_variable ~ explanatory_variable + another_one, data = data_source)
-predict(m, newdata = new_data) # makeing presidction with new_data
+# Read in the data
+new_lrn14 <- as.data.frame(read.csv('data/learning2014.csv'))
 ```
-![](./img/1.png)
-
-
-
-## Graphical model validation
-
+A matrix of plots of variables of the data can be drawn as follows, coloured according to gender variable:
 ```R
-# create a regression model with multiple explanatory variables
-my_model2 <- lm(points ~ attitude + stra, data = learning2014)
-
-# draw diagnostic plots using the plot() function. Choose the plots 1, 2 and 5
-par(mfrow = c(2,2))
-plot(my_model2, which = c(1,2,5))
+p <- ggpairs(new_lrn14, mapping = aes(col = gender), lower = list(combo = wrap("facethist", bins = 20)))
+p
 ```
-![](./img/2.png)
+![](/Users/edward/IODS-project/img/1.png)
 
-## Making predictions
+
 ```R
-# Create model object m
-m <- lm(points ~ attitude, data = learning2014)
-
-# New observations
-new_attitudes <- c("Mia" = 3.8, "Mike"= 4.4, "Riikka" = 2.2, "Pekka" = 2.9)
-new_data <- data.frame(attitude = new_attitudes)
-
-# Predict the new students exam points based on attitude
-predict(m, newdata = new_data)
-```
-Prediction:
-```R
-     Mia     Mike   Riikka    Pekka 
-25.03390 27.14918 19.39317 21.86099
+summary(new_lrn14)
 ```
 
-# Logistic regression
+Results:
+```
+gender       age           attitude          deep            stra            surf           points     
+ F:110   Min.   :17.00   Min.   :14.00   Min.   :1.583   Min.   :1.250   Min.   :1.583   Min.   : 7.00  
+ M: 56   1st Qu.:21.00   1st Qu.:26.00   1st Qu.:3.333   1st Qu.:2.625   1st Qu.:2.417   1st Qu.:19.00  
+         Median :22.00   Median :32.00   Median :3.667   Median :3.188   Median :2.833   Median :23.00  
+         Mean   :25.51   Mean   :31.43   Mean   :3.680   Mean   :3.121   Mean   :2.787   Mean   :22.72  
+         3rd Qu.:27.00   3rd Qu.:37.00   3rd Qu.:4.083   3rd Qu.:3.625   3rd Qu.:3.167   3rd Qu.:27.75  
+         Max.   :55.00   Max.   :50.00   Max.   :4.917   Max.   :5.000   Max.   :4.333   Max.   :33.00
+```
+
+The gender variable inllustrate that this course was attended by more female students. Most of the variables are distributed randomly and shows weak correlation with the points. The correlation between points and attitude is the largest between all the variables. Most of the variables seems to be close to normal distribution except gender and age.
 
 
 
+## Fitting a Regression Model
+```R
+lrn2014_model <- lm(points ~ attitude + stra + surf, data = new_lrn14)
+summary(lrn2014_model)
+```
+
+```
+Call:
+lm(formula = points ~ attitude + stra + surf, data = new_lrn14)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-17.1550  -3.4346   0.5156   3.6401  10.8952 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 11.01711    3.68375   2.991  0.00322 ** 
+attitude     0.33952    0.05741   5.913 1.93e-08 ***
+stra         0.85313    0.54159   1.575  0.11716    
+surf        -0.58607    0.80138  -0.731  0.46563    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 5.296 on 162 degrees of freedom
+Multiple R-squared:  0.2074,	Adjusted R-squared:  0.1927 
+F-statistic: 14.13 on 3 and 162 DF,  p-value: 3.156e-08
+```
+As can be seen from the model summary, the estimates of strategic and surface learning have large P-value and thus no statistical significance explaining the course points; also as expected according to the weak correlation with points variable. Thus, it makes more sense to remove the strategic learning due to the highest probability value.
 
 
-# Clustering and classification
+Remove strategic learning variable:
+```R
+lrn2014_model <- lm(points ~ attitude + stra, data = new_lrn14)
+summary(lrn2014_model)
+```
+```
+all:
+lm(formula = points ~ attitude + surf, data = new_lrn14)
 
-Classification:
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-17.277  -3.236   0.386   3.977  10.642 
 
-- Known data
-- Traind based on data
-- Classify new observations
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 14.11957    3.12714   4.515 1.21e-05 ***
+attitude     0.34264    0.05764   5.944 1.63e-08 ***
+surf        -0.77895    0.79556  -0.979    0.329    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Clustering:
-
-- Unknown data
-- Find groups with data based on similarity
-
-Methods
-
-- Linear descriminant analysis
-- Distance measures
-- K-means
-
-# Dimensionality reduction techniques
-
-# Analysis of longitudinal data
-
-
-
-
-
+Residual standard error: 5.32 on 163 degrees of freedom
+Multiple R-squared:  0.1953,	Adjusted R-squared:  0.1854 
+F-statistic: 19.78 on 2 and 163 DF,  p-value: 2.041e-08
+```
 
 
+## Analysis of the Model Summary
+With the removal of strategic learning variable, the statistical significance of the surface learning estimates improves and can be included to this model. The model is not very good since the multiple R2 value is only 0.1953, which means that about 80 % of the relationship between the dependent variable and the explanatory variables still remains unexplained. Therefore, any predictions based on the model might not be very reliable.
 
+
+## Diagnostic Plots and Assumptions
+For a linear model, there are following assumptions:
+
+1. The errors are not correlated.
+2. The size of the errors does not depend on the explanatory variables.
+3. The errors of the model should be normally distributed.
+
+The validity of these assumption can be tested by analysing the residuals of the model. In the following figure three different diagnostic plots are drawn:
+
+- Residuals vs. fitted values plot
+- Normal Q–Q plot
+- Residuals vs. leverage plot
+
+
+```R
+par(mfrow = c(1,3))
+plot(new_lrn14_model, which = c(1,2,5))
+```
+![](/Users/edward/IODS-project/img/2.png)
+
+Interpretations:
+
+
+1. From the first plot, the residuals vs. fitted values plot doesn’t show any kind of pattern or correlation, so the errors are not correlated and their size is independent of the explanatory variables.
+2. The Q–Q-plot shows reasonably well fit between the standardised residuals and theoretical quantities, thus confirms the validity of normal distribution assumption.
+3. From the thid plor, we can conclude that the model is not distorted by any single observation since the x-axis scale of the residuals vs. leverage plot is relatively narrow and no significant outliers was observed.

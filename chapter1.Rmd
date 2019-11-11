@@ -5,8 +5,3 @@ After learning online course from the Data Camp, I think all the programming lan
 My github repository is [here](https://github.com/gpx135/IODS-project).
 
 My course diary web page is [here](https://gpx135.github.io/IODS-project/).
-
-
-Some notes about the R language:
-- R is an open source language which mean free of charge and everyone can use it. In the field of statistical analysis, it is very convienient to manipulate the data. R's basic data types are character, numeric, integer, complex, and logical. R's basic data structures include the vector, list, matrix, data frame, and factors.
-
