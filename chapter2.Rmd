@@ -176,11 +176,11 @@ mutate() # adding new variables as mutations of the existing ones
 jointed_data <- inner_join(first_data, second_data, by = common_columns, suffix = c(".first", ".second"))
 
 ```
-# Learning Questionnaire Analysis
-## Introduction
+# 2. Learning Questionnaire Analysis
+## 2.1 Introduction
 The original data has 60 variables and 183 observations; most of the questions were given on Likert scale, from 1 to 5, except for the few background related variables (age, attitude, points). For the analysis part, the variables related to deep learning, surface learning, and strategic learning have been scaled using [R script](https://github.com/gpx135/IODS-project/blob/master/data/create_learning2014.R).
 
-## Data overview
+## 2.2 Data overview
 ```R
 # Read in the data
 new_lrn14 <- as.data.frame(read.csv('data/learning2014.csv'))
@@ -212,7 +212,7 @@ The gender variable inllustrate that this course was attended by more female stu
 
 
 
-## Fitting a Regression Model
+## 2.3 Fitting a Regression Model
 ```R
 lrn2014_model <- lm(points ~ attitude + stra + surf, data = new_lrn14)
 summary(lrn2014_model)
@@ -269,11 +269,11 @@ F-statistic: 19.78 on 2 and 163 DF,  p-value: 2.041e-08
 ```
 
 
-## Analysis of the Model Summary
+## 2.4 Analysis of the Model Summary
 With the removal of strategic learning variable, the statistical significance of the surface learning estimates improves and can be included to this model. The model is not very good since the multiple R2 value is only 0.1953, which means that about 80 % of the relationship between the dependent variable and the explanatory variables still remains unexplained. Therefore, any predictions based on the model might not be very reliable.
 
 
-## Diagnostic Plots and Assumptions
+## 2.5 Diagnostic Plots and Assumptions
 For a linear model, there are following assumptions:
 
 1. The errors are not correlated.
