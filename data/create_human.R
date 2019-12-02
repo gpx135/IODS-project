@@ -1,6 +1,6 @@
 # Author: Pingxin Gao
 # Created: 25 Nov, 2019
-
+# data source: http://s3.amazonaws.com/assets.datacamp.com/production/course_2218/datasets/human1.txt
 
 # import packages
 library(dplyr)
@@ -53,3 +53,34 @@ human <- inner_join(hd, gii, by = 'country')
 
 # Write the joined DF to a file.
 write.table(human, file = "human.csv", sep = "\t", col.names = TRUE)
+
+
+# Author: Pingxin Gao
+# Created: 2 Dec, 2019
+
+## Data wranging (exercise 5) ##
+
+
+# Mutate gni_cap
+human <- mutate(human, gni_cap = as.numeric(str_replace(human$gni_cap, pattern=",", replace ="")))
+
+# Exclude variables
+human <- select(human, one_of('country','se_f_of_m','lfp_f_of_m','edu_exp','life_exp','gni_cap','mmr','abr','mp_share'))
+
+# Remove all rows with missing values
+human <- na.omit(human)
+
+# Remove the observations which relate to regions instead of countries.
+human <- head(human, -7)
+
+# Define the row names of the data by the country names and remove the country name column from the data. 
+rownames(human) <- human$country
+human <- human[,-1]
+
+
+# Overwrite the data that was written in the end of Exercise 4.
+write.table(human, file = "human.csv", sep = "\t", col.names = TRUE)
+
+
+
+
